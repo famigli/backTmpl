@@ -18,7 +18,7 @@ class RicoveroController extends AbstractController
     
 
     /**
-     * @Route("/ricovero", methods={"POST"})
+     * @Route("/api/ricovero", methods={"POST"})
      */
     public function ricoveraAction(
         Request $request, 
@@ -28,7 +28,8 @@ class RicoveroController extends AbstractController
     ): Response
     {
         try {
-            $jsonData = json_decode($request->getContent());
+            if (!$jsonData = json_decode($request->getContent()))
+                throw new Exception ("Payload mancante");
             $data = DateTime::createFromFormat(DateTimeInterface::ATOM, $jsonData->data);
             if ($data === FALSE)
                 throw new Exception('Data non corretta');
@@ -59,7 +60,7 @@ class RicoveroController extends AbstractController
     /**
      * dimetti
      *
-     * @Route("/ricovero/dimetti", methods={"PUT"})
+     * @Route("/api/ricovero/dimetti", methods={"PUT"})
      * @return void
      */
     public function dimettiAction(
@@ -68,7 +69,8 @@ class RicoveroController extends AbstractController
         RicoveroManagerSvc $ricoveroManagerSvc
     ) {
         try {
-            $jsonData = json_decode($request->getContent());
+            if (!$jsonData = json_decode($request->getContent()))
+                throw new Exception ("Payload mancante");
             $data = DateTime::createFromFormat(DateTimeInterface::ATOM, $jsonData->data);
             if ($data === FALSE)
                 throw new Exception('Data non corretta');
