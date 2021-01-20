@@ -1,0 +1,3 @@
+parameters:
+    maindb_url: '%env(resolve:DATABASE_URL)%'
+    rfc249_enabled: false

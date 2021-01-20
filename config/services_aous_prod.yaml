@@ -1,0 +1,8 @@
+#Consente di personalizzare servizi e ascolto di eventi in base all'installazione
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        
+    

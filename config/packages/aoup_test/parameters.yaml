@@ -1,0 +1,3 @@
+parameters:
+    maindb_url: 'specificare esplicitamente'
+    rfc249_enabled: true

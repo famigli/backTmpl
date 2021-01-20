@@ -1,0 +1,4 @@
+services:
+    App\Service\Integrazioni\Rfc249OutManagerSvc:
+        tags:
+            - { name: kernel.event_listener, event: Paziente.post_aggiorna_telefono, method: onPostAggiornaTelefono }

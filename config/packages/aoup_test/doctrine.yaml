@@ -1,0 +1,3 @@
+doctrine:
+    dbal:
+        url: 'mysql://backtmpl:backtmpl@127.0.0.1:3306/backtmpl' #specificare connessione test
