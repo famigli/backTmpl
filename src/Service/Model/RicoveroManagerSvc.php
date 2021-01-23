@@ -1,7 +1,7 @@
 <?php
 namespace App\Service\Model;
 
-use AdibaBundle\Exception\ValidationException;
+use App\Exception\ValidationException;
 use App\Entity\Paziente;
 use App\Entity\Ricovero;
 use DateTime;
@@ -31,7 +31,13 @@ class RicoveroManagerSvc {
         $this->validator = $validator;
         $this->dispatcher = $dispatcher;
     }
-
+    
+    /**
+     * getById
+     *
+     * @param  mixed $id
+     * @return Ricovero
+     */
     public function getById($id){
         return $this->em->getRepository(Ricovero::class)->find($id);
     }

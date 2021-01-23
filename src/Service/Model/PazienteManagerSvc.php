@@ -1,7 +1,7 @@
 <?php
 namespace App\Service\Model;
 
-use AdibaBundle\Exception\ValidationException;
+use App\Exception\ValidationException;
 use App\Entity\Paziente;
 use App\Entity\Ricovero;
 use DateTime;

@@ -29,4 +29,21 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    
+            
+    Doctrine\Common\Annotations\AnnotationReader: ~
+    app.annotation_loader:
+        class: Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader
+        arguments: 
+            - '@Doctrine\Common\Annotations\AnnotationReader'
+    app.class_metadata_factory:
+        class: Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory
+        arguments:
+            - '@app.annotation_loader'
+    Symfony\Component\Serializer\Normalizer\DateTimeNormalizer:
+        arguments:
+            - { 'datetime_format': 'c' }
+        tags: [serializer.normalizer]
+    Symfony\Component\Serializer\Normalizer\ObjectNormalizer:
+        arguments:
+            - '@app.class_metadata_factory' 
+        tags: [serializer.normalizer]

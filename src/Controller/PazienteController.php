@@ -11,32 +11,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Annotations as OA;
-use Nelmio\ApiDocBundle\Annotation\Model;
-use Nelmio\ApiDocBundle\Annotation\Security;
 use App\Entity\Paziente;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * @Route("/api/paziente")
+ */
 class PazienteController extends AbstractController
 {
 
     /**
-     * @Route("/api/paziente",  methods={"POST"})
-     * @OA\Response(
-     *     response=200,
-     *     description="Inscrisci paziente",
-     *     @OA\JsonContent(
-     *        type="array",
-     *        @OA\Items(ref=@Model(type=Paziente::class, groups={"full"}))
-     *     )
-     * )
+     * @Route("",  methods={"POST"}, format="json")
      */
     public function nuovoAction(
         Request $request, 
         EntityManagerInterface $em,
-        PazienteManagerSvc $pazienteManagerSvc        
+        PazienteManagerSvc $pazienteManagerSvc,
+        SerializerInterface $serializer      
     ): Response
-    {
+    {        
+        
         try {
+
+            $this->denyAccessUnlessGranted('ROLE_USER', null, 'L\'utente non dispone del ruolo ROLE_USER');
+
             if (!$jsonData = json_decode($request->getContent()))
                 throw new Exception ("Payload mancante");
             $dataNascita = DateTime::createFromFormat(DateTimeInterface::ATOM, $jsonData->dataNascita);
@@ -57,15 +58,24 @@ class PazienteController extends AbstractController
                 $em->getConnection()->rollBack();
                 throw $ex;
             }
-            return $this->json(["paziente" => $paziente]);
-                
+
+            #volendo specificare ulteriori opzioni per i normalizer
+            $context = [
+                'datetime_format' => 'd/m/Y',
+                ObjectNormalizer::GROUPS  => ['a'],
+                AbstractNormalizer::IGNORED_ATTRIBUTES => ['cognome']
+            ];
+            return $this->json($paziente, Response::HTTP_OK, [], $context);
+            #oppure
+            $json = $serializer->serialize($paziente, 'json', $context);
+            return new JsonResponse($json, Response::HTTP_OK, [], true);
         } catch (Exception $ex) {
-            return $this->json(['error' => $ex->getMessage()], Response::HTTP_BAD_REQUEST);
+            return $this->json((object)['error' => $ex->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
 
     /**
-     * @Route("/api/paziente", name="paziente")
+     * @Route("", name="paziente", methods={"GET"})
      */
     public function index(): Response
     {

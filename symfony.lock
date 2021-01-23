@@ -84,26 +84,6 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
-    "jms/metadata": {
-        "version": "2.4.0"
-    },
-    "jms/serializer": {
-        "version": "3.11.0"
-    },
-    "jms/serializer-bundle": {
-        "version": "3.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "3.0",
-            "ref": "384cec52df45f3bfd46a09930d6960a58872b268"
-        },
-        "files": [
-            "./config/packages/dev/jms_serializer.yaml",
-            "./config/packages/jms_serializer.yaml",
-            "./config/packages/prod/jms_serializer.yaml"
-        ]
-    },
     "laminas/laminas-code": {
         "version": "4.0.0"
     },
@@ -113,18 +93,26 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.1.1"
     },
-    "nelmio/api-doc-bundle": {
-        "version": "3.0",
+    "lcobucci/clock": {
+        "version": "2.0.0"
+    },
+    "lcobucci/jwt": {
+        "version": "4.0.0"
+    },
+    "lexik/jwt-authentication-bundle": {
+        "version": "2.5",
         "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
+            "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "3.0",
-            "ref": "c8e0c38e1a280ab9e37587a8fa32b251d5bc1c94"
+            "version": "2.5",
+            "ref": "5b2157bcd5778166a5696e42f552ad36529a07a6"
         },
         "files": [
-            "./config/packages/nelmio_api_doc.yaml",
-            "./config/routes/nelmio_api_doc.yaml"
+            "./config/packages/lexik_jwt_authentication.yaml"
         ]
+    },
+    "namshi/jose": {
+        "version": "7.2.3"
     },
     "nelmio/cors-bundle": {
         "version": "1.5",
@@ -152,9 +140,6 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
-    },
-    "phpstan/phpdoc-parser": {
-        "version": "0.4.10"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -194,9 +179,6 @@
         "files": [
             "./public/.htaccess"
         ]
-    },
-    "symfony/asset": {
-        "version": "v5.2.1"
     },
     "symfony/cache": {
         "version": "v5.2.1"
@@ -296,9 +278,6 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
-    "symfony/options-resolver": {
-        "version": "v5.2.1"
-    },
     "symfony/orm-pack": {
         "version": "v2.1.0"
     },
@@ -313,6 +292,9 @@
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.22.0"
+    },
+    "symfony/polyfill-php56": {
+        "version": "v1.20.0"
     },
     "symfony/polyfill-php73": {
         "version": "v1.22.0"
@@ -342,6 +324,30 @@
             "./config/packages/routing.yaml",
             "./config/routes.yaml"
         ]
+    },
+    "symfony/security-bundle": {
+        "version": "5.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.1",
+            "ref": "0a4bae19389d3b9cba1ca0102e3b2bccea724603"
+        },
+        "files": [
+            "./config/packages/security.yaml"
+        ]
+    },
+    "symfony/security-core": {
+        "version": "v5.2.1"
+    },
+    "symfony/security-csrf": {
+        "version": "v5.2.1"
+    },
+    "symfony/security-guard": {
+        "version": "v5.2.1"
+    },
+    "symfony/security-http": {
+        "version": "v5.2.1"
     },
     "symfony/serializer": {
         "version": "v5.2.1"
@@ -425,8 +431,5 @@
     },
     "webmozart/assert": {
         "version": "1.9.1"
-    },
-    "zircote/swagger-php": {
-        "version": "3.1.0"
     }
 }

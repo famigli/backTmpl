@@ -4,7 +4,8 @@ namespace App\Entity;
 use App\Repository\PazienteRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\Serializer\Annotation\Ignore;
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=PazienteRepository::class)
  */
@@ -14,27 +15,32 @@ class Paziente
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"a", "gruppo2"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"a"})
      */
     private $cognome;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Ignore()
      */
     private $nome;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"a"})
      */
     private $data_nascita;
 
     /**
      * @ORM\Column(type="string", length=1)
      * @Assert\Choice(choices = { "M", "F" }, message = "Il campo sesso ammette i valori M o F")
+     * @Groups({"a"})
      */
     private $sesso;
 

@@ -3,7 +3,7 @@
 namespace App\Entity;
 use App\Repository\RicoveroRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=RicoveroRepository::class)
  */
@@ -13,11 +13,13 @@ class Ricovero
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"gruppo1", "gruppo2"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"gruppo1", "gruppo2"})
      */
     private $data;
 
@@ -27,7 +29,7 @@ class Ricovero
     private $reparto;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Paziente::class)
+     * @ORM\ManyToOne(targetEntity=Paziente::class, fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $paziente;

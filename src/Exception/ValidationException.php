@@ -1,6 +1,6 @@
 <?php
 
-namespace AdibaBundle\Exception;
+namespace App\Exception;
 use Exception;
 
 class ValidationException extends Exception

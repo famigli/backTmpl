@@ -1,0 +1,4 @@
+lexik_jwt_authentication:
+    secret_key: '%app.jwt_secret_key%'
+    public_key: '%app.jwt_public_key%'
+    pass_phrase: '%app.jwt_passphrase%'

@@ -1,3 +1,7 @@
 parameters:
     maindb_url: 'specificare esplicitamente'
-    rfc249_enabled: true
+    app.cors_allow_origin: '^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
+    app.mailer_url: 'null://localhost'
+    app.jwt_secret_key: ''
+    app.jwt_public_key: '%kernel.project_dir%/config/jwt/adiba_test_public.pem'
+    app.jwt_passphrase: ''

@@ -50,7 +50,7 @@ class RicoveroController extends AbstractController
                 $em->getConnection()->rollBack();
                 throw $ex;
             }
-            return $this->json(["ricovero" => $ricovero]);
+            return $this->json((object)['ricovero' => $ricovero]);
             
         } catch (Exception $ex) {
             return $this->json(['error' => $ex->getMessage()], Response::HTTP_BAD_REQUEST);
@@ -66,7 +66,7 @@ class RicoveroController extends AbstractController
     public function dimettiAction(
         Request $request, 
         EntityManagerInterface $em,
-        RicoveroManagerSvc $ricoveroManagerSvc
+        RicoveroManagerSvc $ricoveroManagerSvc        
     ) {
         try {
             if (!$jsonData = json_decode($request->getContent()))
@@ -86,7 +86,8 @@ class RicoveroController extends AbstractController
                 $em->getConnection()->rollBack();
                 throw $ex;
             }
-            return $this->json(["ricovero" => $ricovero]);
+            
+            return $this->json((object)['ricovero' => $ricovero]);
             
         } catch (Exception $ex) {
             return $this->json(['error' => $ex->getMessage()], Response::HTTP_BAD_REQUEST);
