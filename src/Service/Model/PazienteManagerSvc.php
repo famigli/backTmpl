@@ -38,16 +38,7 @@ class PazienteManagerSvc implements EventSubscriberInterface{
         $this->dispatcher = $dispatcher;
     }
     
-    /**
-     * getById
-     *
-     * @param  integer $id
-     * @return Paziente
-     */
-    public function getById($id) {
-        return $this->em->getRepository(Paziente::class)->find($id);
-    }
-        
+   
     /**
      * getNew
      *
