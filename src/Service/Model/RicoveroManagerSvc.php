@@ -32,19 +32,7 @@ class RicoveroManagerSvc {
         $this->dispatcher = $dispatcher;
     }
     
-    /**
-     * getById
-     *
-     * @param  mixed $id
-     * @return Ricovero
-     */
-    public function getById($id){
-        return $this->em->getRepository(Ricovero::class)->find($id);
-    }
-
-    public function getByDataReparto($data, $reparto) {
-
-    }
+    
     
     public function getNew(DateTime $data, $reparto, Paziente $paziente) {
         

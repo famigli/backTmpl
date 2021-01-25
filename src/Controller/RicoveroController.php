@@ -33,7 +33,8 @@ class RicoveroController extends AbstractController
             $data = DateTime::createFromFormat(DateTimeInterface::ATOM, $jsonData->data);
             if ($data === FALSE)
                 throw new Exception('Data non corretta');
-            $paziente = $pazienteManagerSvc->getById($jsonData->idPaziente);
+            $pazienteRep = $em->getRepository(Paziente::class);
+            $paziente = $pazienteRep->find($jsonData->idPaziente);
             if ($paziente === null)
                 throw new Exception('Paziente non specificato');
             if (!isset($jsonData->telefono))
@@ -74,7 +75,8 @@ class RicoveroController extends AbstractController
             $data = DateTime::createFromFormat(DateTimeInterface::ATOM, $jsonData->data);
             if ($data === FALSE)
                 throw new Exception('Data non corretta');
-            $ricovero = $ricoveroManagerSvc->getById($jsonData->idRicovero);
+            $ricoveroRep = $em->getRepository(Ricovero::class);
+            $ricovero = $ricoveroRep->find($jsonData->idRicovero);
             if ($ricovero === null)
                 throw new Exception('Ricovero non specificato');
             
