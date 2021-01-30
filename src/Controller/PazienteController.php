@@ -16,15 +16,59 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
+use OpenApi\Annotations as OA;
 
 /**
  * @Route("/api/paziente")
+ * @OA\Info(title="Paziente API", version="1.0.0") 
  */
 class PazienteController extends AbstractController
 {
 
     /**
      * @Route("",  methods={"POST"}, format="json")
+     * @OA\Post(
+     *     path="/api/paziente",
+     *     summary="Crea un nuovo paziente",
+     *     description="Crea un nuovo paziente2",
+     *     @OA\RequestBody(
+     *         description="Client side search object",
+     *         required=true,
+     *         @OA\MediaType(
+     *              mediaType="application/json",                 
+     *              @OA\Schema(
+     *                  @OA\Property(
+     *                      property="dataNascita",
+     *                      type="string",
+     *                      format="date-time"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="cognome",
+     *                      type="string"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="nome",
+     *                      type="string"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="sesso",
+     *                      type="string"
+     *                  ),
+     *                  example={"dataNascita": "1985-04-12T23:20:50.52Z", "nome": "Jessica", "cognome": "Smith", "sesso": "F"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *     @OA\Schema(ref="#/components/schemas/SearchResultObject")   
+     *     ), 
+     *     @OA\Response(
+     *         response=404,
+     *         description="Could Not Find Resource"
+     *     )
+     * )
+     * 
      */
     public function nuovoAction(
         Request $request, 
@@ -33,7 +77,6 @@ class PazienteController extends AbstractController
         SerializerInterface $serializer      
     ): Response
     {        
-        
         try {
 
             $this->denyAccessUnlessGranted('ROLE_USER', null, 'L\'utente non dispone del ruolo ROLE_USER');

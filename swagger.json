@@ -1,0 +1,56 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Paziente API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/paziente": {
+            "post": {
+                "summary": "Crea un nuovo paziente",
+                "description": "Crea un nuovo paziente2",
+                "operationId": "App\\Controller\\PazienteController::nuovoAction",
+                "requestBody": {
+                    "description": "Client side search object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "dataNascita": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "cognome": {
+                                        "type": "string"
+                                    },
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "sesso": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "dataNascita": "1985-04-12T23:20:50.52Z",
+                                    "nome": "Jessica",
+                                    "cognome": "Smith",
+                                    "sesso": "F"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Could Not Find Resource"
+                    }
+                }
+            }
+        }
+    }
+}
